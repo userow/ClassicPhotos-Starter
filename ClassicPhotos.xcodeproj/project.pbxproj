@@ -9,35 +9,23 @@
 /* Begin PBXBuildFile section */
 		27DF646319657A9300B42725 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DF646219657A9300B42725 /* AppDelegate.swift */; };
 		27DF646519657A9300B42725 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27DF646419657A9300B42725 /* Images.xcassets */; };
-		27DF647119657A9300B42725 /* ClassicPhotosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DF647019657A9300B42725 /* ClassicPhotosTests.swift */; };
 		27DF647B19657AD900B42725 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27DF647A19657AD900B42725 /* Storyboard.storyboard */; };
 		27DF647D19657B7500B42725 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DF647C19657B7500B42725 /* ListViewController.swift */; };
 		27DF647F19657EDE00B42725 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27DF647E19657EDE00B42725 /* CoreImage.framework */; };
-		32D4220D1BBDD56D00187988 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32D4220C1BBDD56D00187988 /* Default-568h@2x.png */; settings = {ASSET_TAGS = (); }; };
+		32D4220D1BBDD56D00187988 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32D4220C1BBDD56D00187988 /* Default-568h@2x.png */; };
+		CD421B7B1F15064700A43A28 /* PhotoOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD421B7A1F15064700A43A28 /* PhotoOperations.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		27DF646B19657A9300B42725 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 27DF645519657A9300B42725 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 27DF645C19657A9300B42725;
-			remoteInfo = ClassicPhotos;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		27DF645D19657A9300B42725 /* ClassicPhotos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClassicPhotos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27DF646119657A9300B42725 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		27DF646219657A9300B42725 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		27DF646419657A9300B42725 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		27DF646A19657A9300B42725 /* ClassicPhotosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ClassicPhotosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		27DF646F19657A9300B42725 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		27DF647019657A9300B42725 /* ClassicPhotosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassicPhotosTests.swift; sourceTree = "<group>"; };
 		27DF647A19657AD900B42725 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		27DF647C19657B7500B42725 /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		27DF647E19657EDE00B42725 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		32D4220C1BBDD56D00187988 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		CD421B7A1F15064700A43A28 /* PhotoOperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoOperations.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,13 +37,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		27DF646719657A9300B42725 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -64,7 +45,6 @@
 			children = (
 				27DF645F19657A9300B42725 /* ClassicPhotos */,
 				32D4220B1BBDD3CF00187988 /* Frameworks */,
-				27DF646D19657A9300B42725 /* ClassicPhotosTests */,
 				27DF645E19657A9300B42725 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -73,7 +53,6 @@
 			isa = PBXGroup;
 			children = (
 				27DF645D19657A9300B42725 /* ClassicPhotos.app */,
-				27DF646A19657A9300B42725 /* ClassicPhotosTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -86,6 +65,7 @@
 				27DF646019657A9300B42725 /* Supporting Files */,
 				27DF647A19657AD900B42725 /* Storyboard.storyboard */,
 				27DF647C19657B7500B42725 /* ListViewController.swift */,
+				CD421B7A1F15064700A43A28 /* PhotoOperations.swift */,
 			);
 			path = ClassicPhotos;
 			sourceTree = "<group>";
@@ -95,23 +75,6 @@
 			children = (
 				32D4220C1BBDD56D00187988 /* Default-568h@2x.png */,
 				27DF646119657A9300B42725 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		27DF646D19657A9300B42725 /* ClassicPhotosTests */ = {
-			isa = PBXGroup;
-			children = (
-				27DF647019657A9300B42725 /* ClassicPhotosTests.swift */,
-				27DF646E19657A9300B42725 /* Supporting Files */,
-			);
-			path = ClassicPhotosTests;
-			sourceTree = "<group>";
-		};
-		27DF646E19657A9300B42725 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				27DF646F19657A9300B42725 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -144,24 +107,6 @@
 			productReference = 27DF645D19657A9300B42725 /* ClassicPhotos.app */;
 			productType = "com.apple.product-type.application";
 		};
-		27DF646919657A9300B42725 /* ClassicPhotosTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 27DF647719657A9300B42725 /* Build configuration list for PBXNativeTarget "ClassicPhotosTests" */;
-			buildPhases = (
-				27DF646619657A9300B42725 /* Sources */,
-				27DF646719657A9300B42725 /* Frameworks */,
-				27DF646819657A9300B42725 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				27DF646C19657A9300B42725 /* PBXTargetDependency */,
-			);
-			name = ClassicPhotosTests;
-			productName = ClassicPhotosTests;
-			productReference = 27DF646A19657A9300B42725 /* ClassicPhotosTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -175,10 +120,8 @@
 				TargetAttributes = {
 					27DF645C19657A9300B42725 = {
 						CreatedOnToolsVersion = 6.0;
-					};
-					27DF646919657A9300B42725 = {
-						CreatedOnToolsVersion = 6.0;
-						TestTargetID = 27DF645C19657A9300B42725;
+						DevelopmentTeam = SN623CU8P7;
+						LastSwiftMigration = 0830;
 					};
 				};
 			};
@@ -195,7 +138,6 @@
 			projectRoot = "";
 			targets = (
 				27DF645C19657A9300B42725 /* ClassicPhotos */,
-				27DF646919657A9300B42725 /* ClassicPhotosTests */,
 			);
 		};
 /* End PBXProject section */
@@ -211,13 +153,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		27DF646819657A9300B42725 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -227,26 +162,11 @@
 			files = (
 				27DF647D19657B7500B42725 /* ListViewController.swift in Sources */,
 				27DF646319657A9300B42725 /* AppDelegate.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		27DF646619657A9300B42725 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				27DF647119657A9300B42725 /* ClassicPhotosTests.swift in Sources */,
+				CD421B7B1F15064700A43A28 /* PhotoOperations.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		27DF646C19657A9300B42725 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 27DF645C19657A9300B42725 /* ClassicPhotos */;
-			targetProxy = 27DF646B19657A9300B42725 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		27DF647219657A9300B42725 /* Debug */ = {
@@ -334,10 +254,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				DEVELOPMENT_TEAM = SN623CU8P7;
 				INFOPLIST_FILE = ClassicPhotos/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.raywenderlich.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -347,49 +269,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				DEVELOPMENT_TEAM = SN623CU8P7;
 				INFOPLIST_FILE = ClassicPhotos/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.raywenderlich.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Release;
-		};
-		27DF647819657A9300B42725 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ClassicPhotos.app/ClassicPhotos";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = ClassicPhotosTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				METAL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.raywenderlich.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-			};
-			name = Debug;
-		};
-		27DF647919657A9300B42725 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ClassicPhotos.app/ClassicPhotos";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = ClassicPhotosTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				METAL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.raywenderlich.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
 			};
 			name = Release;
 		};
@@ -410,15 +296,6 @@
 			buildConfigurations = (
 				27DF647519657A9300B42725 /* Debug */,
 				27DF647619657A9300B42725 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		27DF647719657A9300B42725 /* Build configuration list for PBXNativeTarget "ClassicPhotosTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				27DF647819657A9300B42725 /* Debug */,
-				27DF647919657A9300B42725 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
