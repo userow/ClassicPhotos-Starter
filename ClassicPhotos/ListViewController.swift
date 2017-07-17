@@ -9,7 +9,7 @@
 import UIKit
 import CoreImage
 
-let dataSourceURL = NSURL(string:"http://www.raywenderlich.com/downloads/ClassicPhotosDictionary.plist")
+let dataSourceURL = URL(string:"http://www.raywenderlich.com/downloads/ClassicPhotosDictionary.plist")
 
 class ListViewController: UITableViewController {
   
@@ -25,16 +25,16 @@ class ListViewController: UITableViewController {
     
     //#pragma mark - Table view data source
   
-    override func tableView(tableView: UITableView?, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView?, numberOfRowsInSection section: Int) -> Int {
         return photos.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("CellIdentifier", forIndexPath: indexPath)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CellIdentifier", for: indexPath)
         
         //1
         if cell.accessoryView == nil {
-            let indicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+            let indicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
             cell.accessoryView = indicator
         }
         let indicator = cell.accessoryView as! UIActivityIndicatorView
@@ -48,33 +48,33 @@ class ListViewController: UITableViewController {
         
         //4
         switch (photoDetails.state){
-        case .Filtered:
+        case .filtered:
             indicator.stopAnimating()
-        case .Failed:
+        case .failed:
             indicator.stopAnimating()
             cell.textLabel?.text = "Failed to load"
-        case .New, .Downloaded:
+        case .new, .downloaded:
             indicator.startAnimating()
             
-            if (!tableView.dragging && !tableView.decelerating) {
+            if (!tableView.isDragging && !tableView.isDecelerating) {
                 self.startOperationsForPhotoRecord(photoDetails, indexPath: indexPath)
             }
         }
         return cell
     }
     
-    func startOperationsForPhotoRecord(photoDetails: PhotoRecord, indexPath: NSIndexPath){
+    func startOperationsForPhotoRecord(_ photoDetails: PhotoRecord, indexPath: IndexPath){
         switch (photoDetails.state) {
-        case .New:
+        case .new:
             startDownloadForRecord(photoDetails, indexPath: indexPath)
-        case .Downloaded:
+        case .downloaded:
             startFiltrationForRecord(photoDetails, indexPath: indexPath)
         default:
             NSLog("do nothing")
         }
     }
     
-    func startDownloadForRecord(photoDetails: PhotoRecord, indexPath: NSIndexPath){
+    func startDownloadForRecord(_ photoDetails: PhotoRecord, indexPath: IndexPath){
         //1
         if let _ = pendingOperations.downloadsInProgress[indexPath] {
             return
@@ -84,12 +84,12 @@ class ListViewController: UITableViewController {
         let downloader = ImageDownloader(photoRecord: photoDetails)
         //3
         downloader.completionBlock = {
-            if downloader.cancelled {
+            if downloader.isCancelled {
                 return
             }
-            dispatch_async(dispatch_get_main_queue(), {
-                self.pendingOperations.downloadsInProgress.removeValueForKey(indexPath)
-                self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            DispatchQueue.main.async(execute: {
+                self.pendingOperations.downloadsInProgress.removeValue(forKey: indexPath)
+                self.tableView.reloadRows(at: [indexPath], with: .fade)
             })
         }
         //4
@@ -98,19 +98,19 @@ class ListViewController: UITableViewController {
         pendingOperations.downloadQueue.addOperation(downloader)
     }
     
-    func startFiltrationForRecord(photoDetails: PhotoRecord, indexPath: NSIndexPath){
+    func startFiltrationForRecord(_ photoDetails: PhotoRecord, indexPath: IndexPath){
         if let _ = pendingOperations.filtrationsInProgress[indexPath]{
             return
         }
         
         let filterer = ImageFiltration(photoRecord: photoDetails)
         filterer.completionBlock = {
-            if filterer.cancelled {
+            if filterer.isCancelled {
                 return
             }
-            dispatch_async(dispatch_get_main_queue(), {
-                self.pendingOperations.filtrationsInProgress.removeValueForKey(indexPath)
-                self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            DispatchQueue.main.async(execute: {
+                self.pendingOperations.filtrationsInProgress.removeValue(forKey: indexPath)
+                self.tableView.reloadRows(at: [indexPath], with: .fade)
             })
         }
         pendingOperations.filtrationsInProgress[indexPath] = filterer
@@ -119,17 +119,17 @@ class ListViewController: UITableViewController {
 
     
     func fetchPhotoDetails() {
-        let request = NSURLRequest(URL:dataSourceURL!)
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+        let request = URLRequest(url:dataSourceURL!)
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
-        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) {response,data,error in
+        NSURLConnection.sendAsynchronousRequest(request, queue: OperationQueue.main) {response,data,error in
             if data != nil {
                 
-                let datasourceDictionary = (try! NSPropertyListSerialization.propertyListWithData(data!, options:NSPropertyListMutabilityOptions.MutableContainersAndLeaves, format: nil)) as! NSDictionary
+                let datasourceDictionary = (try! PropertyListSerialization.propertyList(from: data!, options:PropertyListSerialization.MutabilityOptions.mutableContainersAndLeaves, format: nil)) as! NSDictionary
                 
                 for(key, value) in datasourceDictionary {
                     let name = key as? String
-                    let url = NSURL(string:value as? String ?? "")
+                    let url = URL(string:value as? String ?? "")
 
                     if name != nil && url != nil {
                         let photoRecord = PhotoRecord(name:name!, url:url!)
@@ -144,16 +144,16 @@ class ListViewController: UITableViewController {
                 let alert = UIAlertView(title:"Oops!",message:error!.localizedDescription, delegate:nil, cancelButtonTitle:"OK")
                 alert.show()
             }
-            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
         }
     }
     
-    override func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+    override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         //1
         suspendAllOperations()
     }
     
-    override func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+    override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         // 2
         if !decelerate {
             loadImagesForOnscreenCells()
@@ -161,20 +161,20 @@ class ListViewController: UITableViewController {
         }
     }
     
-    override func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         // 3
         loadImagesForOnscreenCells()
         resumeAllOperations()
     }
     
     func suspendAllOperations () {
-        pendingOperations.downloadQueue.suspended = true
-        pendingOperations.filtrationQueue.suspended = true
+        pendingOperations.downloadQueue.isSuspended = true
+        pendingOperations.filtrationQueue.isSuspended = true
     }
     
     func resumeAllOperations () {
-        pendingOperations.downloadQueue.suspended = false
-        pendingOperations.filtrationQueue.suspended = false
+        pendingOperations.downloadQueue.isSuspended = false
+        pendingOperations.filtrationQueue.isSuspended = false
     }
     
     func loadImagesForOnscreenCells () {
@@ -182,32 +182,32 @@ class ListViewController: UITableViewController {
         if let pathsArray = tableView.indexPathsForVisibleRows {
             //2
             var allPendingOperations = Set(pendingOperations.downloadsInProgress.keys)
-            allPendingOperations.unionInPlace(pendingOperations.filtrationsInProgress.keys)
+            allPendingOperations.formUnion(pendingOperations.filtrationsInProgress.keys)
             
             //3
             var toBeCancelled = allPendingOperations
             let visiblePaths = Set(pathsArray)
-            toBeCancelled.subtractInPlace(visiblePaths)
+            toBeCancelled.subtract(visiblePaths)
             
             //4
             var toBeStarted = visiblePaths
-            toBeStarted.subtractInPlace(allPendingOperations)
+            toBeStarted.subtract(allPendingOperations)
             
             // 5
             for indexPath in toBeCancelled {
                 if let pendingDownload = pendingOperations.downloadsInProgress[indexPath] {
                     pendingDownload.cancel()
                 }
-                pendingOperations.downloadsInProgress.removeValueForKey(indexPath)
+                pendingOperations.downloadsInProgress.removeValue(forKey: indexPath)
                 if let pendingFiltration = pendingOperations.filtrationsInProgress[indexPath] {
                     pendingFiltration.cancel()
                 }
-                pendingOperations.filtrationsInProgress.removeValueForKey(indexPath)
+                pendingOperations.filtrationsInProgress.removeValue(forKey: indexPath)
             }
             
             // 6
             for indexPath in toBeStarted {
-                let indexPath = indexPath as NSIndexPath
+                let indexPath = indexPath as IndexPath
                 let recordToProcess = self.photos[indexPath.row]
                 startOperationsForPhotoRecord(recordToProcess, indexPath: indexPath)
             }
